@@ -27,7 +27,13 @@ public class UserController {
 
     @GetMapping("/register")
     public String viewSignUpForm(Model model) {
-        model.addAttribute("user", new UserDto());
+        try {
+            model.addAttribute("user", new UserDto());
+        } catch (Exception e)
+        {
+            return "this e mail already exist";
+        }
+
         return "signup_form";
     }
 
