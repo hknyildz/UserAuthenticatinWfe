@@ -34,7 +34,6 @@ public class UserEntity {
     }
 
 
-
     public String getFirstName() {
         return firstName;
     }

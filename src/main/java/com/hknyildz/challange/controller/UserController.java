@@ -29,9 +29,8 @@ public class UserController {
     public String viewSignUpForm(Model model) {
         try {
             model.addAttribute("user", new UserDto());
-        } catch (Exception e)
-        {
-            return "this e mail already exist";
+        } catch (Exception e) {
+            return "error";
         }
 
         return "signup_form";

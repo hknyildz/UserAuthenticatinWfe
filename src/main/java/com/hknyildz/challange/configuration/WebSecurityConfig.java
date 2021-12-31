@@ -24,14 +24,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private DataSource dataSource;
 
     @Bean
-    public UserDetailsService userDetailsService(){
+    public UserDetailsService userDetailsService() {
         return new CustomUserDetailService();
     }
 
 
-
     @Bean
-    AuthenticationProvider authenticationProvider(){
+    AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService());
         authProvider.setPasswordEncoder(new BCryptPasswordEncoder());
@@ -41,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.authenticationProvider(authenticationProvider());
+        auth.authenticationProvider(authenticationProvider());
     }
 
     @Override
@@ -57,13 +56,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .formLogin()
-                    .usernameParameter("email")
-                    .defaultSuccessUrl("/home")
-                    .permitAll()
+                .usernameParameter("email")
+                .defaultSuccessUrl("/home")
+                .permitAll()
                 .and()
                 .logout()
-                    .logoutSuccessUrl("/")
-                    .permitAll()
+                .logoutSuccessUrl("/")
+                .permitAll()
                 .and()
                 .httpBasic();
     }

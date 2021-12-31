@@ -17,9 +17,8 @@ public class UserServiceImpl implements IUserService {
     @Override
     public UserEntity createUser(UserDto userDto) throws Exception {
 
-        UserEntity userEntity=null;
-        if(userDao.findByEmail(userDto.getEmail())==null)
-        {
+        UserEntity userEntity = null;
+        if (userDao.findByEmail(userDto.getEmail()) == null) {
             userEntity = new UserEntity();
             userEntity.setFirstName(userDto.getFirstName());
             userEntity.setLastName(userDto.getLastName());
@@ -27,11 +26,12 @@ public class UserServiceImpl implements IUserService {
             userEntity.setRole("USER");
             userEntity.setPassword(userDto.getPassword());
 
-           String password = userDto.getPassword();
+            String password = userDto.getPassword();
 
             userEntity.setPassword(new BCryptPasswordEncoder().encode(password));
+        } else {
+            throw new Exception("This email is already exist");
         }
-        else{ throw new Exception("This email is already exist"); }
 
         return userDao.createUser(userEntity);
     }

@@ -10,7 +10,7 @@ import java.util.Collections;
 
 public class CustomUserDetails implements UserDetails {
 
-    private UserEntity user;
+    private final UserEntity user;
 
     public CustomUserDetails(UserEntity user) {
         this.user = user;
@@ -51,8 +51,8 @@ public class CustomUserDetails implements UserDetails {
         return true;
     }
 
-    public String getFullName(){
-        return user.getFirstName()+" "+user.getLastName();
+    public String getFullName() {
+        return user.getFirstName() + " " + user.getLastName();
     }
 
 
